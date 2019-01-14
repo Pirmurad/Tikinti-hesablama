@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulyator</title>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <style>
+    body {
+      background-color: #dedede;
+    }
+
+    .update-container {
+      background-color: rgba(0, 0, 0, .8);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      visibility: visible;
+    }
+
+    .main-container {
+      z-index: 0;
+    }
+
+  </style>
+</head>
+<body>
+<div id="app" class="container main-container pt-5">
+  <!-- <h3 class="text-center">Binanın eni</h3> -->
+  <div class="form-row">
+        <div class="col-md-6 offset-3 mt-2 d-flex">
+                <input type="number" min="0" v-model="en"  class="form-control form-control-lg mr-1" placeholder="Binanın eni (m)" >
+         </div>
+         <div class="col-md-6 offset-3 mt-2 d-flex">
+                <input type="number" min="0" v-model="uzunlug" class="form-control form-control-lg mr-1" placeholder="Binanın uzunluğu (m)" >
+         </div>
+         <div class="col-md-6 offset-3 mt-2 d-flex">
+                <input type="number" min="0" v-model="hundurluk" class="form-control form-control-lg mr-1" placeholder="Binanın hündürlüyü (m)" >
+         </div>
+         <div class="col-md-6 offset-3 mt-2 d-flex">
+                <input type="number" min="0" v-model="damOrtuyununMaililiyi" class="form-control form-control-lg mr-1" placeholder="Dam örtüyünün mailliyi ( % ilə)" >
+         </div>
+         <div class="col-md-6 offset-3 mt-2 d-flex">
+                <input type="number" min="0" v-model="dosemeninQalinligi" class="form-control form-control-lg mr-1" placeholder="Döşəmənin qalınlığı ( sm ilə)" >
+         </div>
+  </div>
+  <h3 class="text-center mt-5 mb-3">Nəticələr</h3>
+  <div class="row">
+    <div style="background-color: #582E48!important"
+         class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+      <p class="m-0 w-100">Divarın sahəsi : {{divarinSahesi}} m<sup>2</sup></p>
+    </div>
+    <div style="background-color: #582E48!important"
+    class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+ <p class="m-0 w-100">Damın sahəsi :  {{ daminSahesi }} m<sup>2</sup></p>
+</div>
+<div style="background-color: #582E48!important"
+class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+<p class="m-0 w-100">Metalkonstruksiya çəkisi :{{metalKonstruksiyaCekisi}} ton</p>
+</div>
+<div style="background-color: #582E48!important"
+class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+<p class="m-0 w-100">Beton sərfiyyatı : {{betonSerfiyyati}} m<sup>3</sup></p>
+</div>
+<div style="background-color: #582E48!important"
+class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+<p class="m-0 w-100">Armatur sərfiyyatı : {{armaturSerfiyyati}} ton</p>
+</div>
+<div style="background-color: #582E48!important"
+class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+<p class="m-0 w-100">Sendviç panel  sərfiyyatı : {{sendvicPanelSerfiyyati}} m<sup>2</sup></p>
+</div>
+
+<div style="background-color: #582E48!important"
+class="p-2 mb-3 text-light bg-dark col-md-8 offset-2 shadow card d-flex justify-content-center flex-row align-items-center">
+<p class="m-0 w-100">Tikinti xerci : {{tikintiXerci()}} ₼</p>
+</div>
+  </div>
+</div>
+
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
