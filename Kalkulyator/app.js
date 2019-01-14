@@ -2,11 +2,11 @@ const app = new Vue({
 el:'#app',
 name:'Bina hesablanmasi vuejs ile',
 data:{
-    en:70,
-    uzunlug:12,
-    hundurluk:4,
-    damOrtuyununMaililiyi:20,
-    dosemeninQalinligi:1,
+    en:null,
+    uzunlug:null,
+    hundurluk:null,
+    damOrtuyununMaililiyi:null,
+    dosemeninQalinligi:null,
 },
 computed:{
     divarinSahesi(){
