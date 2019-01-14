@@ -2,11 +2,11 @@ const app = new Vue({
 el:'#app',
 name:'Bina hesablanmasi vuejs ile',
 data:{
-    en:null,
-    uzunlug:null,
-    hundurluk:null,
-    damOrtuyununMaililiyi:null,
-    dosemeninQalinligi:null
+    en:70,
+    uzunlug:12,
+    hundurluk:4,
+    damOrtuyununMaililiyi:20,
+    dosemeninQalinligi:1,
 },
 computed:{
     divarinSahesi(){
@@ -18,27 +18,48 @@ computed:{
       return (Math.sqrt(Math.pow(this.en/2,2) + Math.pow(this.en * maillikFaiz,2) )* 2 * this.uzunlug).toFixed(1)
     },
     metalKonstruksiyaCekisi(){
-        if(this.betonSerfiyyati  < 400)
+        let maillik = this.damOrtuyununMaililiyi / 100
+
+         if(maillik < 0.2){
+           maillik =  1.08;
+           }
+           else
+          {
+            maillik =  1;
+
+         }
+
+         // burda bax gor maillik ne qaytarir
+         console.log('maiilik= '+maillik)
+
+         // Burda hesab sehvi var bu blokda
+
+          let betonSerf= this.betonSerfiyyati
+          console.log('betonSerf ='+betonSerf)
+        if( this.daminSahesi < 400)
         {
-           return (this.betonSerfiyyati * 0.032).toFixed(2);
+           return (((this.daminSahesi * 0.032) + (this.en*2 + this.uzunlug*2)/6*(this.hundurluk - 4)*0.05) * maillik).toFixed(2)
+           // bu deyiskenlerin yerini duz yazmisan ? D3 D4 falan onlari dyan baxim
+           /*
+           D3 - en
+           D4 - uzunlug
+           D8 - qalinlig amma faizle burda ola biler nedise
+           
+           */
         }
         else
          {  //D7 nin qiymeti
-             if(this.damOrtuyununMaililiyi < 0.2){
-                let maillik =  1.08
-              }
-              else
-              {
-                let maillik =  1;
-
-             }
-             return (this.betonSerfiyyati * 0.027) + (this.en*2 + this.uzunlug*2)/6*(this.hundurluk - 4)*0.05 * maillik
+             
+             return (((this.daminSahesi * 0.027) + (this.en*2 + this.uzunlug*2)/6*(this.hundurluk - 4)*0.05) * maillik).toFixed(2)
             
         }
     },
     betonSerfiyyati(){
         // D3*D4*D8/100*2.2
-        return (this.en * this.uzunlug * (this.dosemeninQalinligi / 100) *2.2).toFixed(2)
+
+        return (this.en * this.uzunlug * this.dosemeninQalinligi / 100 *2.2).toFixed(2)
+
+        
     },
     armaturSerfiyyati(){
             // D8 in qiymeti
